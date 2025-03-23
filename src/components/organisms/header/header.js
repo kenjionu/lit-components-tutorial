@@ -1,7 +1,12 @@
+import { Router } from '@vaadin/router';
 import { LitElement, html, css } from 'lit';
+import { pathUrls } from '../../../constants/pathsUrl';
 export class Header extends LitElement {
     static styles = [
         css`
+            li a.active {
+            color: #389;
+            }
             @view-transition {
                 navigation: auto;
             }
@@ -34,7 +39,7 @@ export class Header extends LitElement {
             margin: 0;
             padding: 0;
             overflow: hidden;
-ce            }
+            }
 
             li {
             float: left;
@@ -51,19 +56,53 @@ ce            }
             li a:hover {
             color: #389;
             }
+
+   
         `
     ];
+
+    
+    constructor() {
+        super();
+        this.rutaActual = Router.pathname; // Inicializa la ruta actual
+    }
+
+    connectedCallback() {
+        super.connectedCallback();
+        // Escucha los eventos de cambio de ruta
+        window.addEventListener('vaadin-router-location-changed', this.actualizarRuta.bind(this));
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        // Elimina el listener cuando el componente se desconecta
+        window.removeEventListener('vaadin-router-location-changed', this.actualizarRuta.bind(this));
+    }
+
+    actualizarRuta() {
+        this.rutaActual = Router.pathname;
+        this.requestUpdate(); // Fuerza la actualización del componente
+    }
 
     render() {
         return html`
         <header>
-  
             <div>
                 <nav role="menu" aria-labelledby="mainmenulabel">
                     <ul>
-                        <li><a href="/" data-route="home">Home</a></li>
-                        <li><a href="/about" data-route="about">About</a></li>
-                        <li><a href="/contact" data-route="contact">Contact</a></li>
+                            ${pathUrls.urls.map((element, index) => {
+                                console.log(element);
+                                const esActivo = this.rutaActual === element;
+                                const claseActivo = esActivo ? 'active' : '';
+
+                                return html`
+                                    <li>
+                                        <a class="${claseActivo}" href="${element}">
+                                            ${pathUrls.name[index]}
+                                        </a>
+                                    </li>
+                                `;
+                            })}
                     </ul>
                 </nav>
             </div>

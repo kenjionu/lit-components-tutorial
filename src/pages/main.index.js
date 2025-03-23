@@ -4,15 +4,22 @@ import { LitElement, html, css } from 'lit';
 import { Router } from '@vaadin/router';
 import './home/home-view';
 import './about/about-view';
+import '../components/pages/notfound';
 import '../components/organisms/header/header';
 import '../components/organisms/footer/footer';
+import '../components/atoms/loading';
 
 class LitUrlIndex extends LitElement {
   static styles = css`
-
-  @view-transition {
-    navigation: auto;
-  }
+    .loading {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    @view-transition {
+      navigation: auto;
+    }
     #outlet {
       view-transition-name: page;
     }
@@ -24,6 +31,11 @@ class LitUrlIndex extends LitElement {
       animation: fade 0.3s linear reverse;
       }
   `;
+
+  constructor() {
+    super()
+    this.loading = false;
+  }
   firstUpdated() {
     super.firstUpdated();
     const router = new Router(this.shadowRoot.querySelector('#outlet'));
@@ -31,8 +43,19 @@ class LitUrlIndex extends LitElement {
     router.setRoutes([
       { path: '/', component: 'home-view' },
       { path: '/about', component: 'about-view' },
-      { path: '(.*)', redirect: '/' },
+      { path: '(.*)', component: 'not-found' },
     ]);
+
+       // Escucha los eventos de cambio de ruta
+    window.addEventListener('vaadin-router-before-enter', () => {
+        this.loading = true;
+        this.requestUpdate();
+    });
+
+    window.addEventListener('vaadin-router-after-enter', () => {
+        this.loading = false;
+        this.requestUpdate();
+    });
   }
 
 

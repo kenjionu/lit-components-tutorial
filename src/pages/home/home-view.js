@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit';
-
 export class HomeView extends LitElement {
     static styles = [
         css`
@@ -31,12 +30,12 @@ export class HomeView extends LitElement {
             }
 
             .avatar:hover {
-                transform: scale(1.1);
-                    animation: leaves 1s ease-in-out infinite alternate;
+                transform: scale(1.0);
+                animation: leaves 0.5s ease-in-out infinite alternate;
             }
                
             .fade-in-text {
-            animation: fadeIn 5s;
+            animation: fadeIn 1.5s;
             }
 
             
@@ -69,32 +68,36 @@ export class HomeView extends LitElement {
 
     render() {
         return html`
-        <div>
+        <section>
             <section class="home-view">
-                <section class="content-avatar">
-                    <img class="avatar" src="./src/assets/apicturecesar-min.webp" alt="cesar" arial-label="cesar picture">
+                <section 
+                class="content-avatar"   
+                aria-label="avatar">
+                    <img class="avatar"   
+                    aria-label="avatar image"
+                    src="./src/assets/apicturecesar-min.webp" alt="cesar" arial-label="cesar picture">
                 </section>
-                <section class="content-text">
+                <section class="content-text"
+                  aria-description="Description of the home page">
                     <p>Hola!, Soy Cesar.</p>
-                    <p>Soy un <b class="fade-in-text">desarrollador de software</b> con experiencia en aplicaciones web.</p>
+                    <p>Soy <b class="fade-in-text">Ingeniero de Sistema desde Venezuela, vivo actualmente en Lima, 🇵🇪</b> Experto en Angular, construyendo aplicaciones web robustas y escalables.</p>
                     <p>Principalmente trabajo con:</p>
                     <b class="fade-in-text">
-                    <ul>
+                    <ul role="list technology experience">
                         <li>Angular</li>
                         <li>Javascript</li>
                         <li>Typescript</li>
                     </ul>
                     </b>
-                    <p>Por otro lado he tenido mayores conocimientos de tecnologia:
+                    <p>Profundizando en para ampliar mis horizontes:
                     <b class="fade-in-text">
-                    <ul>
+                    <ul role="list technology learning">
                         <li>React</li>
                         <li>Lit Components</li>
                     </ul>
                 </section>
             </section>
-        </div>
-       `;
+        </esction>`;
     }
 }
 customElements.define('home-view', HomeView);
