@@ -10,7 +10,7 @@ export class Footer extends LitElement {
     ];
 
     render() {
-        return html``;
+        return html`<p>footer</p>`;
     }
 }
-customElements.define('footer', Footer);
+customElements.define('template-footer', Footer);

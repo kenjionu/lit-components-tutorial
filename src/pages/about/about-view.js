@@ -6,11 +6,13 @@ export class AboutView extends LitElement {
             :host {
                 display: block;
             }
+      
         `
     ];
 
     render() {
-        return html`<p>About View Page</p>`;
+        return html`<p>About View Page</p>
+        `;
     }
 }
 customElements.define('about-view', AboutView);
