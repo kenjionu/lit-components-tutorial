@@ -1,7 +1,8 @@
 {
   "name": "lit-components-tutorial",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "test": "mocha",
@@ -9,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@lit-labs/ssr": "^3.3.1",
     "@tailwindcss/vite": "^4.0.15",
     "@vaadin/router": "^2.0.0",
     "lit": "^3.2.1",

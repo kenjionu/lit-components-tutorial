@@ -7,7 +7,6 @@ import './about/about-view';
 import '../components/pages/notfound';
 import '../components/organisms/header/header';
 import '../components/organisms/footer/footer';
-import '../components/atoms/loading';
 
 class LitUrlIndex extends LitElement {
   static styles = css`
@@ -34,7 +33,6 @@ class LitUrlIndex extends LitElement {
 
   constructor() {
     super()
-    this.loading = false;
   }
   firstUpdated() {
     super.firstUpdated();
@@ -45,17 +43,6 @@ class LitUrlIndex extends LitElement {
       { path: '/about', component: 'about-view' },
       { path: '(.*)', component: 'not-found' },
     ]);
-
-       // Escucha los eventos de cambio de ruta
-    window.addEventListener('vaadin-router-before-enter', () => {
-        this.loading = true;
-        this.requestUpdate();
-    });
-
-    window.addEventListener('vaadin-router-after-enter', () => {
-        this.loading = false;
-        this.requestUpdate();
-    });
   }
 
 

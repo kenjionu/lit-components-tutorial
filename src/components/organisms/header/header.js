@@ -64,7 +64,7 @@ export class Header extends LitElement {
     
     constructor() {
         super();
-        this.rutaActual = Router.pathname; // Inicializa la ruta actual
+        this.rutaActual = window.location.pathname; // Inicializa la ruta actual
     }
 
     connectedCallback() {
@@ -80,7 +80,7 @@ export class Header extends LitElement {
     }
 
     actualizarRuta() {
-        this.rutaActual = Router.pathname;
+        this.rutaActual = window.location.pathname;
         this.requestUpdate(); // Fuerza la actualización del componente
     }
 
@@ -91,7 +91,6 @@ export class Header extends LitElement {
                 <nav role="menu" aria-labelledby="mainmenulabel">
                     <ul>
                             ${pathUrls.urls.map((element, index) => {
-                                console.log(element);
                                 const esActivo = this.rutaActual === element;
                                 const claseActivo = esActivo ? 'active' : '';
 
