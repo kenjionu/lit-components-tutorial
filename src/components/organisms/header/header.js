@@ -1,9 +1,17 @@
-import { Router } from '@vaadin/router';
 import { LitElement, html, css } from 'lit';
 import { pathUrls } from '../../../constants/pathsUrl';
+import { animate } from '@lit-labs/motion';
+import '../../atoms/dark-mode';
+
+
 export class Header extends LitElement {
+
     static styles = [
         css`
+            body[data-theme="dark"] header {
+            background-color: orange;  /* Color de fondo más suave para el header en modo oscuro */
+            color: white;
+            }
             li a.active {
             color: #389;
             }
@@ -15,9 +23,9 @@ export class Header extends LitElement {
             }
             header {
                 padding: 1rem 2rem;
-                background-color: #fff;
                 color: white;
-                flex-wrap: wrap;
+                border: 1px solid #000;
+                box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
             }
             header div:first-child {
                             display: flex;
@@ -26,14 +34,13 @@ export class Header extends LitElement {
             header div:last-child {
                             display: flex;
                             flex: 0.9;
-                            justify-content: center;
+                            justify-content: space-between;
                         }
             nav {
                 display: flex;
                 gap: 1rem;                
             }
             ul {
-            border: 1px solid #e7e7e7;
             border-radius: 20px;
             list-style-type: none;
             margin: 0;
@@ -57,13 +64,16 @@ export class Header extends LitElement {
             color: #389;
             }
 
-   
+     
         `
     ];
 
     
     constructor() {
         super();
+        this.addEventListener('click', this.handleClick);
+        this.changeDarkMode()
+        
         this.rutaActual = window.location.pathname; // Inicializa la ruta actual
     }
 
@@ -84,10 +94,47 @@ export class Header extends LitElement {
         this.requestUpdate(); // Fuerza la actualización del componente
     }
 
+    changeDarkMode(){
+              // Para obtener el tema actual:
+      const temaActual = document.body.dataset.theme;
+      console.log('Tema actual:', temaActual);
+      
+      // Para verificar el tema y realizar acciones:
+      if (document.body.dataset.theme === 'light') {
+        // Acciones para tema claro
+        console.log('Tema claro activo.');
+      } else if (document.body.dataset.theme === 'dark') {
+        // Acciones para tema oscuro
+        console.log('Tema oscuro activo.');
+      } else {
+        // Manejo de caso por defecto o tema no definido
+        console.log('Tema no definido o desconocido.');
+      }
+
+    }
+
+    
+
+    handleClick() {
+        const element = this.shadowRoot.querySelector('div');
+        element.animate(
+          [
+            { transform: 'perspective(400px) rotateX(90deg) rotateY(0deg)' },
+            { transform: 'perspective(400px) rotateX(10deg) rotateY(0deg)' }
+          ],
+          {
+            duration: 900,
+            easing: 'ease-out',
+            iterations: 1
+          }
+        );
+      }
+  
     render() {
         return html`
         <header>
             <div>
+            <dark-mode></dark-mode>
                 <nav role="menu" aria-labelledby="mainmenulabel">
                     <ul>
                             ${pathUrls.urls.map((element, index) => {
@@ -96,7 +143,13 @@ export class Header extends LitElement {
 
                                 return html`
                                     <li>
-                                        <a class="${claseActivo}" href="${element}">
+                                        <a 
+                                           ${animate({
+                                        from: { transform: 'perspective(400px) rotateX(0deg) rotateY(0deg)' },
+                                        to: { transform: 'perspective(400px) rotateX(10deg) rotateY(10deg)' },
+                                        options: { duration: 300, easing: 'ease-out' }
+                                        })}
+                                        class="${claseActivo}" href="${element}">
                                             ${pathUrls.name[index]}
                                         </a>
                                     </li>

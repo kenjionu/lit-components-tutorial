@@ -48,9 +48,7 @@ class LitUrlIndex extends LitElement {
 
   render() {
     return html`
-    <div>
-            <template-header></template-header>
-    </div>
+        <template-header></template-header>
         <div id="outlet"></div>
         <template-footer></template-footer>
     `;

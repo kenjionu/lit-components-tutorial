@@ -1,4 +1,7 @@
 import { LitElement, html, css } from 'lit';
+import { empresas } from '../../components/constants/home-info';
+import { animate } from '@lit-labs/motion';
+
 export class HomeView extends LitElement {
     static styles = [
         css`
@@ -38,7 +41,19 @@ export class HomeView extends LitElement {
             animation: fadeIn 1.5s;
             }
 
-            
+        
+            .empresa {
+                display: block;
+                font-weight: bold;
+                border-radius: 8px;
+                font-size: 1rem;
+                text-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra suave por defecto */
+            }
+
+            .empresa:hover {
+                transform: scale(1.1);
+                transition: transform 0.3s ease;
+                }
             @keyframes leaves {
                 0% {
                     transform: scale(1.0);
@@ -62,6 +77,16 @@ export class HomeView extends LitElement {
                     list-style-position: inside;
                     text-align: center;
                 }
+ 
+                .empresa {
+                    display: inline-block;
+                    font-weight: bold;
+                    padding: 10px;
+                    margin: 5px;
+                    border-radius: 8px;
+                    font-size: 2rem;
+                    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra suave por defecto */
+                }
             }
         `
     ];
@@ -80,7 +105,7 @@ export class HomeView extends LitElement {
                 <section class="content-text"
                   aria-description="Description of the home page">
                     <p>Hola!, Soy Cesar.</p>
-                    <p>Soy <b class="fade-in-text">Ingeniero de Sistema desde Venezuela, vivo actualmente en Lima, 🇵🇪</b> Experto en Angular, construyendo aplicaciones web robustas y escalables.</p>
+                    <p>Soy <b class="fade-in-text">Ingeniero de Sistema </b> Experto en Angular, construyendo aplicaciones web robustas y escalables.</p>
                     <p>Principalmente trabajo con:</p>
                     <b class="fade-in-text">
                     <ul role="list technology experience">
@@ -94,7 +119,25 @@ export class HomeView extends LitElement {
                     <ul role="list technology learning">
                         <li>React</li>
                         <li>Lit Components</li>
-                    </ul>
+                    </ul></b>
+                    <div><p>He trabajado para las empresas:</p>
+                    ${empresas.map(
+                    (empresa) => html`
+                        <div class="empresa"
+                            ${animate({
+                                from: { color: '#000' },
+                                to: { color: '#032' },
+                                options: {
+                                    duration: 5000,
+                                    direction: 'alternate',
+                                    iterations: Infinity,
+                                    easing: 'ease-in-out'
+                                }
+                            })}
+                                >
+                        <p>${empresa}</p>
+        `)}
+        </div>
                 </section>
             </section>
         </esction>`;
