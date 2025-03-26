@@ -11,8 +11,9 @@ export class DarkMode extends LitElement {
     }
     static styles = css`
    :host {
-   
+      display:flex;
       transition: background-color 0.3s, color 0.3s;
+      align-items: center;
     }
     :host .toogle-button([dark-mode]) {
       background-color: #333;

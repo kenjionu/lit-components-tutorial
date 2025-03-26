@@ -116,7 +116,7 @@ export class Header extends LitElement {
     
 
     handleClick() {
-        const element = this.shadowRoot.querySelector('div');
+        const element = this.shadowRoot.querySelector('header > div > nav > ul ');
         element.animate(
           [
             { transform: 'perspective(400px) rotateX(90deg) rotateY(0deg)' },
