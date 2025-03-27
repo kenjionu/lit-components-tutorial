@@ -5,7 +5,6 @@ import { animate } from '@lit-labs/motion';
 export class HomeView extends LitElement {
     static styles = [
         css`
- 
             :host {
                 display: block;
             }
@@ -59,7 +58,7 @@ export class HomeView extends LitElement {
                     transform: scale(1.0);
                 }
                 100% {
-                    transform: scale(1.5);
+                    transform: scale(1.4);
                 }
             }
 
@@ -116,14 +115,14 @@ export class HomeView extends LitElement {
                     </b>
                     <p>Profundizando en para ampliar mis horizontes:
                     <b class="fade-in-text">
-                    <ul role="list technology learning">
-                        <li>React</li>
-                        <li>Lit Components</li>
+                    <ul role="list">
+                        <li role="listitem">React</li>
+                        <li role="listitem">Lit Components</li>
                     </ul></b>
                     <div><p>He trabajado para las empresas:</p>
                     ${empresas.map(
                     (empresa) => html`
-                        <div class="empresa"
+                        <div class="empresa"    
                             ${animate({
                                 from: { color: '#000' },
                                 to: { color: '#032' },
@@ -136,8 +135,8 @@ export class HomeView extends LitElement {
                             })}
                                 >
                         <p>${empresa}</p>
-        `)}
-        </div>
+                    `)}
+                    </div>
                 </section>
             </section>
         </esction>`;

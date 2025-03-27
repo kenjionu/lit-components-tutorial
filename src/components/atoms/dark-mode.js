@@ -43,18 +43,9 @@ export class DarkMode extends LitElement {
     toggleDarkMode() {
         this.darkMode = !this.darkMode;
         // Cambia el atributo del host para aplicar los estilos correspondientes
-        if (this.darkMode) {
-          this.setAttribute('dark-mode', '');
-          document.body.style.backgroundColor = 'black'; // Cambiar el fondo del body a negro
-          document.body.style.color = 'white';
-          document.body.setAttribute('data-theme', 'dark');
-          // Cambiar el color
-        } else {
-          this.removeAttribute('dark-mode');
-          document.body.removeAttribute('data-theme');
-          document.body.style.backgroundColor = ''; // Restaurar el fondo
-          document.body.style.color = '';  // Restaurar el color del texto
-        }
+        this.darkMode
+        ? (this.setAttribute('dark-mode', ''), document.body.setAttribute('data-theme', 'dark'))
+        : (this.removeAttribute('dark-mode'), document.body.removeAttribute('data-theme'), document.body.setAttribute('data-theme', 'light'));
       }
 
    
