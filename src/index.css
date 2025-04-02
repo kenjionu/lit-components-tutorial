@@ -1,6 +1,26 @@
-@import "tailwindcss";
 
-body[data-theme="dark"] {
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lexend+Zetta:wght@100..900&display=swap');
+body[data-theme="dark"]{
   background-color: black;
   color: white;
+  animation: fadeIn 0.8s;
+}
+
+.lexend-zetta {
+  font-family: "Lexend Zetta", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+.dm-sans{
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }

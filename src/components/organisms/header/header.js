@@ -8,6 +8,7 @@ export class Header extends LitElement {
     static properties = { temaActual: {type: String} }; 
     static styles = [
         css`
+
             li a.active {
             color: #389;
             }
@@ -62,6 +63,7 @@ export class Header extends LitElement {
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
+            font-family: "DM Sans", sans-serif;
             }
 
             li a:hover {
@@ -139,38 +141,38 @@ export class Header extends LitElement {
     render() {
         const headerClass = this.temaActual === 'dark' ? 'dark-mode' : '';
         return html`
-<header class=${headerClass}>
-    <div>
-        <dark-mode></dark-mode>
-        <nav role="menu" aria-labelledby="mainmenulabel">
-            <ul role="list">
-                ${pathUrls.urls.map((element, index) => {
-                    const esActivo = this.rutaActual === element;
-                    const claseActivo = esActivo ? 'active' : '';
-                    return html`
-                        <li 
-                            role="listitem"
-                            aria-label='${element}'
-                            @click="${(event) => this.handleClick(event.currentTarget)}"
-                        >
-                            <a 
-                                ${animate({
-                                    from: { transform: 'perspective(400px) rotateX(0deg) rotateY(0deg)' },
-                                    to: { transform: 'perspective(400px) rotateX(10deg) rotateY(10deg)' },
-                                    options: { duration: 300, easing: 'ease-out' }
-                                })}
-                                class="${claseActivo}" href="${element}"
-                            >
-                                ${pathUrls.name[index]}
-                            </a>
-                        </li>
-                    `;
-                })}
-            </ul>
-        </nav>
-    </div>
-</header>
-`
+        <header class=${headerClass}
+        })}>
+            <div>
+                <dark-mode></dark-mode>
+                <nav role="menu" aria-labelledby="mainmenulabel">
+                    <ul role="list">
+                        ${pathUrls.urls.map((element, index) => {
+                            const esActivo = this.rutaActual === element;
+                            const claseActivo = esActivo ? 'active' : '';
+                            return html`
+                                <li 
+                                    role="listitem"
+                                    aria-label='${element}'
+                                    @click="${(event) => this.handleClick(event.currentTarget)}"
+                                >
+                                    <a 
+                                        ${animate({
+                                            from: { transform: 'perspective(400px) rotateX(0deg) rotateY(0deg)' },
+                                            to: { transform: 'perspective(400px) rotateX(10deg) rotateY(10deg)' },
+                                            options: { duration: 300, easing: 'ease-out' }
+                                        })}
+                                        class="${claseActivo}" href="${element}"
+                                    >
+                                        ${pathUrls.name[index]}
+                                    </a>
+                                </li>
+                            `;
+                        })}
+                    </ul>
+                </nav>
+            </div>
+        </header>`
     }
 }
 customElements.define('template-header', Header);

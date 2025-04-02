@@ -1,12 +1,12 @@
 // main-index.js
 
 import { LitElement, html, css } from 'lit';
-import { Router } from '@vaadin/router';
 import './home/home-view';
 import './about/about-view';
 import '../components/pages/notfound';
 import '../components/organisms/header/header';
 import '../components/organisms/footer/footer';
+import { Router } from '@lit-labs/router';
 
 class LitUrlIndex extends LitElement {
   static styles = css`
@@ -34,22 +34,17 @@ class LitUrlIndex extends LitElement {
   constructor() {
     super()
   }
-  firstUpdated() {
-    super.firstUpdated();
-    const router = new Router(this.shadowRoot.querySelector('#outlet'));
 
-    router.setRoutes([
-      { path: '/', component: 'home-view' },
-      { path: '/about', component: 'about-view' },
-      { path: '(.*)', component: 'not-found' },
-    ]);
-  }
-
-
+  _router = new Router(this, [
+    { path: '/', render: () => html`<home-view></home-view>` },
+      { path: '/about', render: () => html`<about-view></about-view>`},
+      { path: '(.*)', render: () => html`<not-found></not-found>` },
+  ]);
+  
   render() {
     return html`
         <template-header></template-header>
-        <div id="outlet"></div>
+        ${this._router.outlet()}
         <template-footer></template-footer>
     `;
   }

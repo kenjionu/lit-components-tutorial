@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+
   "scripts": {
     "dev": "vite",
     "test": "mocha",
@@ -11,10 +12,8 @@
   },
   "dependencies": {
     "@lit-labs/motion": "^1.0.8",
-    "@tailwindcss/vite": "^4.0.15",
-    "@vaadin/router": "^2.0.0",
-    "lit": "^3.2.1",
-    "tailwindcss": "^4.0.15"
+    "@lit-labs/router": "^0.1.4",
+    "lit": "^3.2.1"
   },
   "devDependencies": {
     "mocha": "^11.1.0",
