@@ -1,5 +1,6 @@
 import { css, html, LitElement } from 'lit';
-
+import sun from '../../assets/sun-icon-white.svg';
+import moon from '../../assets/moon-icon-white.svg';
 export class DarkMode extends LitElement {
     static properties = {
         darkMode: { type: Boolean }
@@ -38,6 +39,10 @@ export class DarkMode extends LitElement {
     .toggle-button:hover {
       opacity: 0.4
     }
+    .mode-icon{
+    width: 30px;
+    height: 30px;
+    }
     `
 
     toggleDarkMode() {
@@ -51,10 +56,9 @@ export class DarkMode extends LitElement {
    
       render(){
         return html`
-        
         <section>
             <button class="toggle-button bg-sky-700" @click="${this.toggleDarkMode}">
-            ${this.darkMode ? 'Light Mode' : 'Dark Mode'}
+            ${this.darkMode ? html`<img class="mode-icon" src="${sun}" alt="Sun Icon" />` : html`<img class="mode-icon" src="${moon}" alt="Moon Icon" />`}
             </button>
         </section>
         `

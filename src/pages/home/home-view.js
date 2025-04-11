@@ -141,7 +141,7 @@ export class HomeView extends LitElement {
                     </div>
                 </section>
             </section>
-        </esction>`;
+        </section>`;
     }
 }
 customElements.define('home-view', HomeView);

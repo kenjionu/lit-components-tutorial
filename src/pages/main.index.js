@@ -36,7 +36,7 @@ class LitUrlIndex extends LitElement {
   }
 
   _router = new Router(this, [
-    { path: '/', render: () => html`<home-view></home-view>` },
+      { path: '/', render: () => html`<home-view></home-view>` },
       { path: '/about', render: () => html`<about-view></about-view>`},
       { path: '(.*)', render: () => html`<not-found></not-found>` },
   ]);
